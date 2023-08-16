@@ -1,9 +1,21 @@
 package com.colruyt.entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -11,17 +23,17 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "DEMAND_REQUEST_UNQ")
 @IdClass(DemanRequestKey.class)
-public class DemandRequest {
+public class DemandRequest implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="REQ_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "REQ_ID")
     private Long reqId;
 
-    @Column(name="ROLE")
+    @Column(name = "ROLE")
     private String role;
 
-    @Column(name="TECHNOLOGY")
+    @Column(name = "TECHNOLOGY")
     private String technology;
 
     @Column(name="REQUESTED_BY")

@@ -3,7 +3,7 @@ apply plugin: 'ear'
 dependencies {
     deploy(project(path: ':demandmgmtsvc', configuration: 'archives'))
 }
-ear {
+/*ear {
     deploymentDescriptor {
         applicationName = "demandmgmtsvc"
         contextRoot 'demandmgmtsvc'
@@ -11,4 +11,4 @@ ear {
         datasource 'java:app/env/jdbc/demandmgmtsvc', 'jdbc/demandmgmtsvc_ora_fvsref_default'
         datasource 'java:app/env/jdbc/demandmgmtsvc_log', 'jdbc/demandmgmtsvc_ora_fvsref_log'
     }
-}
+}*/
