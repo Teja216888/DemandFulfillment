@@ -1,0 +1,30 @@
+ext {
+    versions = [
+            javax_javaee_api     : '8.0.1',
+            javax_transaction_api: '1.3',
+            springdoc            : '1.6.14',
+            springBootAdminClient: '2.7.9',
+    ]
+
+    libraries = [
+            javax_javaee_api     : "javax:javaee-api:${versions.javax_javaee_api}",
+            javax_transaction_api: "javax.transaction:javax.transaction-api:${versions.javax_transaction_api}",
+            springBootAdminClient: "de.codecentric:spring-boot-admin-starter-client:${versions.springBootAdminClient}",
+            springdoc            : "org.springdoc:springdoc-openapi-ui:${versions.springdoc}",
+    ]
+}
+
+allprojects {
+    group = 'com.colruytgroup'
+    version = '42.0.0'
+
+    plugins.withType(JavaPlugin) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    configurations.configureEach {
+        exclude group: 'org.apache.logging.log4j'
+        exclude group: 'org.apache.httpcomponents'
+    }
+}

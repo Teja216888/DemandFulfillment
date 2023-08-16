@@ -1,0 +1,15 @@
+.module demandmgmtear:
+  variables:
+    MODULE: demandmgmtear
+
+build demandmgmtear:
+  extends:
+    - .build-ear
+    - .module demandmgmtear
+
+publish demandmgmtear:
+  extends:
+    - .publish-ear
+    - .module demandmgmtear
+  dependencies:
+    - build demandmgmtear

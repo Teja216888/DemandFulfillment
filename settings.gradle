@@ -1,0 +1,3 @@
+rootProject.name = 'demandmgmtsvc'
+include 'demandmgmtsvc'
+include 'demandmgmtear'

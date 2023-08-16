@@ -1,0 +1,13 @@
+.module demandmgmtsvc:
+  variables:
+    MODULE: demandmgmtsvc
+
+test demandmgmtsvc:
+  extends:
+    - .test
+    - .module demandmgmtsvc
+
+build demandmgmtsvc:
+  extends:
+    - .build
+    - .module demandmgmtsvc

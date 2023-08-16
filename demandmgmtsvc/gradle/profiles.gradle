@@ -1,0 +1,21 @@
+allprojects {
+    // Used for local environment
+    // H2 database
+    // Uses embedded Tomcat
+    def tomcatProfile='tomcat'
+
+    // Default when no profile property is specified, used for jenkins deployment
+    // remote oracle db
+    // Uses websphere server platform
+    def websphereProfile='websphere'
+
+    def appliedProfile
+    if (project.hasProperty('tomcat')) {
+        appliedProfile = tomcatProfile
+    } else {
+        appliedProfile = websphereProfile
+    }
+
+    apply from: rootProject.file("${project.name}/gradle/profile_${appliedProfile}.gradle")
+    logger.info "Using profile: ${appliedProfile} for ${project.name}"
+}

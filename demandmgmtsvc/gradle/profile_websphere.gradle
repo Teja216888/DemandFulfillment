@@ -1,0 +1,37 @@
+dependencies {
+    providedCompile libraries.javax_javaee_api
+    providedCompile libraries.javax_transaction_api
+}
+
+war {
+    enabled = true
+    archiveVersion = ''
+    archiveClassifier = ''
+    manifest {
+        attributes(
+                'Ignore-Scanning-Archives': '' +
+                        "log4j-api-${versions.log4j}.jar, " +
+                        "jackson-core-${versions.jackson}.jar, " +
+                        "jackson-databind-${versions.jackson}.jar, " +
+                        "jackson-annotations-${versions.jackson}.jar, " +
+                        "jackson-datatype-jsr310-${versions.jackson}.jar, " +
+                        "jaxb-api-${versions.jaxbApi}.jar"
+        )
+    }
+}
+
+bootWar {
+    enabled = false
+}
+
+logger.lifecycle "war.archivePath = $war.archiveFile"
+
+// We do not want to push these libraries to WAS with classloader policy parent first
+configurations.configureEach {
+    exclude group: "org.slf4j", module: "jul-to-slf4j"
+    exclude group: 'org.apache.tomcat'
+    exclude group: 'org.apache.tomcat.embed'
+    exclude module: 'jaxb-api'
+    exclude module: 'spring-boot-starter-tomcat'
+    exclude module: 'woodstox-core-asl'
+}
