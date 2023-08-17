@@ -4,33 +4,32 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @Table(name = "DEMAND_REQUEST_REQUESTED_BY_UNQ")
+@AllArgsConstructor
+@NoArgsConstructor
 public class DemandRequestedBy implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REQUESTED_BY_ID")
     private Integer requestedById;
 
     @Column(name = "REQUESTED_BY_NAME")
     private String requestedBy;
+/*
 
     @OneToMany(mappedBy = "demandRequestedBy")
     private List<DemandRequest> demandRequest;
 
+*/
 
-    public DemandRequestedBy() {
-
-    }
-
-    public DemandRequestedBy(int i, String s) {
-        requestedBy=s;
-        requestedById=i;
-    }
 }
